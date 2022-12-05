@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <style type="text/css">
+        #flotid {width:50%;height:300px;}   
+        #chart_div {width:100%;height:300px;}    
+    </style>
+
+    <!--google chart-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Study', 11],
+          ['Eat', 2],
+          ['Code', 2],
+          ['Play games', 2],
+          ['Sleep', 7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+    <div id="chart_div">
+    <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart', 'line']}); google.charts.setOnLoadCallback(drawCrosshairs);
+
+        function drawCrosshairs() {
+              var data = new google.visualization.DataTable();
+              data.addColumn('number', 'X');
+              data.addColumn('number', '產品A');
+              data.addColumn('number', '產品B');
+
+              data.addRows([
+                [1,130,100], [2,40,90], [3,80,60], [4,160,200], [5,159,99], [6,370,150], [7,330,400], [8,350,200], [9,370,400], [10,400,300], [11,330,225], [12,350,450]
+              ]);
+
+              var options = {
+                title: 'Line Chart',
+                colors: ['#a52714', '#097138'],
+                crosshair: {
+                  color: '#000',
+                  trigger: 'selection'
+                }
+              };
+
+              var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+              chart.draw(data, options);
+              chart.setSelection([{row: 38, column: 1}]);
+        }
+    </script>
+    </div>
+  </body>
+</html>
